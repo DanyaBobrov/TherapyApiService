@@ -1,4 +1,5 @@
-﻿using TherapyApiService.Repositories.Interfaces;
+﻿using TherapyApiService.Models;
+using TherapyApiService.Repositories.Interfaces;
 
 namespace TherapyApiService.Repositories.Implementations
 {
@@ -7,6 +8,16 @@ namespace TherapyApiService.Repositories.Implementations
         public InjectionRepository()
         {
 
+        }
+
+        public async Task AddAsync(Injection injection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Injection> FindAsync(EntityId id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

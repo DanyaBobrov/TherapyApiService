@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using TherapyApiService.Infrastructure;
+using TherapyApiService.Repositories.Implementations;
+using TherapyApiService.Repositories.Interfaces;
 using TherapyApiService.Swagger.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,8 @@ void ConfigureLogging(ILoggingBuilder logging)
 
 void ConfigureServices(IServiceCollection services)
 {
+    services.AddSingleton<IInjectionRepository, InjectionRepository>();//TODO
+
     services.AddApiVersioning();
     services.AddVersionedApiExplorer(setup =>
     {
@@ -36,9 +41,13 @@ void ConfigureServices(IServiceCollection services)
         options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
         options.EnableAnnotations();
+        options.DescribeAllParametersInCamelCase();
     });
 
-    services.AddControllers();
+    services.AddControllers(options =>
+    {
+        options.ModelBinderProviders.Insert(0, new EntityIdModelBinderProvider());
+    });
 }
 
 void ConfigureApplication(IApplicationBuilder app)

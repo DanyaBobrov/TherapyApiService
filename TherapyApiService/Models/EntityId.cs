@@ -29,22 +29,10 @@ namespace TherapyApiService.Models
             }
         }
 
-        private EntityId(byte[] payload)
+        public EntityId(byte[] payload)
         {
             ArgumentNullException.ThrowIfNull(payload);
 
-            if (payload.Length != IdLenght)
-                throw new InvalidOperationException("TODO");
-
-            data = payload;
-            checkSum = Crockford.CalculateChecksum(data);
-        }
-
-        public EntityId(string value)
-        {
-            ArgumentNullException.ThrowIfNull(value);
-
-            var payload = Crockford.FromBase32String(value);
             if (payload.Length != IdLenght)
                 throw new InvalidOperationException("TODO");
 
@@ -70,5 +58,7 @@ namespace TherapyApiService.Models
         }
 
         public override int GetHashCode() => data.GetHashCode();
+
+        public static implicit operator string(EntityId id) => id.ToString();
     }
 }

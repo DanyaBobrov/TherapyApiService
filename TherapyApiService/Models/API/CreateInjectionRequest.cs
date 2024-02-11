@@ -6,7 +6,7 @@ namespace TherapyApiService.Models.API
     public class CreateInjectionRequest
     {
         [Required(AllowEmptyStrings = false)]
-        [SwaggerSchema("Injection identifier")]
-        public string Id { get; set; }
+        [SwaggerSchema("Injection date")]
+        public DateOnly Date { get; set; }
     }
 }
