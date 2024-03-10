@@ -6,5 +6,6 @@ namespace TherapyApiService.Repositories.Interfaces
     {
         Task AddAsync(Injection injection);
         Task<Injection> FindAsync(EntityId id);
+        Task<Injection[]> FindPlannedInjections();
     }
 }

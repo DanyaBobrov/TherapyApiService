@@ -19,5 +19,11 @@ namespace TherapyApiService.Repositories.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Injection[]> FindPlannedInjections()
+        {
+            //where Injection.ActualDate == null
+            throw new NotImplementedException();
+        }
     }
 }

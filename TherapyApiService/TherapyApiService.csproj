@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>91a6d319-32af-47c9-b5f4-f58315b3b25a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Common.MessengerBot.Telegram">
+      <HintPath>..\..\Common.MessengerBot.Telegram\Common.MessengerBot.Telegram\bin\Debug\netstandard2.0\Common.MessengerBot.Telegram.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

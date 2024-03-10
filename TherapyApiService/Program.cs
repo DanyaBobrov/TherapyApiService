@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using TherapyApiService.Infrastructure;
+using TherapyApiService.Models;
+using TherapyApiService.Models.Options;
 using TherapyApiService.Repositories.Implementations;
 using TherapyApiService.Repositories.Interfaces;
 using TherapyApiService.Swagger.Options;
@@ -26,7 +28,11 @@ void ConfigureLogging(ILoggingBuilder logging)
 
 void ConfigureServices(IServiceCollection services)
 {
+    services.Configure<NotificationOptions>(builder.Configuration.GetSection("notification"));
+
     services.AddSingleton<IInjectionRepository, InjectionRepository>();//TODO
+
+    services.AddTelegramBot(Constants.Bots.AlertBot, builder.Configuration.GetSection("bots:alertBot"), builder => builder.AddHealthCheck());
 
     services.AddApiVersioning();
     services.AddVersionedApiExplorer(setup =>
